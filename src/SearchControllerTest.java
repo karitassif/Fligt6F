@@ -41,7 +41,7 @@ public class SearchControllerTest {
     public void searchDiscountFlightsEmptyList() throws Exception {
         sc.searchDiscountFlights(5);
         List<Flight> found = sc.getFlights();
-        assertEquals(0, found.size());
+        assertEquals(0, found.size());//bla
     }
 
     @Test
