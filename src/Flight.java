@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -10,12 +11,12 @@ public class Flight {
     private Airport destination;
     private int price;
     private int availableSeats;
-    private Date depTime;
-    private Date arrTime;
-    private float childDiscount;
+    private Calendar depTime;
+    private Calendar arrTime;
+    private double childDiscount;
 
-    public Flight(int flightNumber, Airport departure, Airport destination, int price, Date depTime,
-                  Date arrTime, int availableSeats, float childDiscount){
+    public Flight(int flightNumber, Airport departure, Airport destination, int price, Calendar depTime,
+                  Calendar arrTime, int availableSeats, double childDiscount){
         this.flightNumber = flightNumber;
         this.departure = departure;
         this.destination = destination;
@@ -38,11 +39,11 @@ public class Flight {
         return destination;
     }
 
-    public Date getDepTime() {
+    public Calendar getDepTime() {
         return depTime;
     }
 
-    public Date getArrTime() {
+    public Calendar getArrTime() {
         return arrTime;
     }
 
@@ -50,7 +51,7 @@ public class Flight {
         return availableSeats;
     }
 
-    public float getChildDiscount() {
+    public double getChildDiscount() {
         return childDiscount;
     }
 

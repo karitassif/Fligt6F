@@ -1,30 +1,75 @@
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class SearchController {
 
     private List<Flight> flights;
     private List<Flight> filteredFlights;
+    DBManagerInterface dbm = new DBMock();
 
-    public void searchFlights(Airport departure, Airport destination, int maxPrice,
-                              int passengerCount, Date depTime) {
-
+    public void searchFlights(String departure, String destination, int maxPrice,
+                              int passengerCount, Calendar depTime) {
+        flights = dbm.findFlights(departure, destination, maxPrice, passengerCount, depTime);
     }
 
     public void searchDiscountFlights(int maxPrice){
-
+        flights  = dbm.findFlights(maxPrice);
     }
 
-    public int showPrice(int adultCount, int childCount){
-        return 1;
+    public int showPrice(Flight flight, int adultCount, int childCount){
+        return (int) (adultCount*flight.getPrice() + 1.0*childCount*flight.getChildDiscount()*flight.getPrice());
     }
 
     public void filterFlights(int maxPrice, boolean childDiscount){
+        filteredFlights.clear();
+        for (Flight flight : flights){
+            boolean cDiscount = flight.getChildDiscount() < 1;
+            if (maxPrice >= flight.getPrice() && cDiscount == childDiscount){
+                filteredFlights.add(flight);
+            }
+        }
 
     }
 
     public void sortFlights(boolean sortByPrice){
+        if (sortByPrice) {
+            for (int i = 0; i < flights.size(); i++) {
+                int index = 0;
+                int lowest = flights.get(i).getPrice();
+                for (int j = i+1; j < flights.size(); j++) {
+                    if (flights.get(j).getPrice() < lowest){
+                        lowest = flights.get(j).getPrice();
+                        index  = j;
+                    }
+                }
+                Flight temp = flights.get(i);
+                flights.set(i, flights.get(index));
+                flights.set(index, temp);
+            }
+        }
+        else{
+            for (int i = 0; i < flights.size(); i++) {
+                int index = 0;
+                Calendar lowest = flights.get(i).getDepTime();
+                for (int j = i + 1; j < flights.size(); j++) {
+                    if (flights.get(j).getDepTime().compareTo(lowest) < 0) {
+                        lowest = flights.get(j).getDepTime();
+                        index = j;
+                    }
+                }
+                Flight temp = flights.get(i);
+                flights.set(i, flights.get(index));
+                flights.set(index, temp);
+            }
+        }
 
     }
 
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public List<Flight> getFilteredFlights() {
+        return filteredFlights;
+    }
 }
