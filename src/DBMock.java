@@ -26,14 +26,18 @@ public class DBMock implements DBManagerInterface {
         Calendar arrtime4 = new GregorianCalendar(2017, 3, 24, 10,30);
         Calendar arrtime5 = new GregorianCalendar(2017, 4, 12, 14,30);
         Calendar deptime5 = new GregorianCalendar(2017, 4, 12, 23,30);
+        Calendar deptime6 = new GregorianCalendar(2017, 6, 24, 17,15);
+        Calendar arrtime6 = new GregorianCalendar(2017, 6, 24, 18,0);
+        Calendar deptime7 = new GregorianCalendar(2017, 6, 24, 17,20);
+        Calendar arrtime7 = new GregorianCalendar(2017, 6, 24, 18,0);
 
         flights.add(new Flight(1, KEF, CPH, 10, deptime1, arrtime1, 200, 0.3));
-        flights.add(new Flight(2, KEF, ARN, 11, deptime2, arrtime2, 5, 0.3));
-        flights.add(new Flight(2, KEF, ARN, 12, deptime2, arrtime2, 4, 0.3));
-        flights.add(new Flight(2, KEF, ARN, 13, deptime2, arrtime2, 3, 0.3));
-        flights.add(new Flight(3, KEF, CDG, 12, deptime3, arrtime3, 4, 0.3));
-        flights.add(new Flight(4, KEF, BER, 13, deptime4, arrtime4, 3, 0.3));
-        flights.add(new Flight(5, KEF, YYZ, 14, deptime5, arrtime5, 0, 0.3));
+        flights.add(new Flight(2, KEF, ARN, 11, deptime2, arrtime2, 5, 1));
+        flights.add(new Flight(3, KEF, ARN, 12, deptime6, arrtime6, 4, 0.3));
+        flights.add(new Flight(4, KEF, ARN, 13, deptime7, arrtime7, 3, 0.3));
+        flights.add(new Flight(5, KEF, CDG, 12, deptime3, arrtime3, 4, 0.3));
+        flights.add(new Flight(6, KEF, BER, 13, deptime4, arrtime4, 3, 0.3));
+        flights.add(new Flight(7, KEF, YYZ, 14, deptime5, arrtime5, 0, 0.3));
     }
 
     public List<Flight> findFlights(String departure, String destination, int maxPrice,

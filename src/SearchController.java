@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class SearchController {
     }
 
     public void filterFlights(int maxPrice, boolean childDiscount){
-        filteredFlights.clear();
+        filteredFlights = new ArrayList<Flight>();
         for (Flight flight : flights){
             boolean cDiscount = flight.getChildDiscount() < 1;
             if (maxPrice >= flight.getPrice() && cDiscount == childDiscount){
@@ -34,7 +35,7 @@ public class SearchController {
     public void sortFlights(boolean sortByPrice){
         if (sortByPrice) {
             for (int i = 0; i < flights.size(); i++) {
-                int index = 0;
+                int index = i;
                 int lowest = flights.get(i).getPrice();
                 for (int j = i+1; j < flights.size(); j++) {
                     if (flights.get(j).getPrice() < lowest){
@@ -49,7 +50,7 @@ public class SearchController {
         }
         else{
             for (int i = 0; i < flights.size(); i++) {
-                int index = 0;
+                int index = i;
                 Calendar lowest = flights.get(i).getDepTime();
                 for (int j = i + 1; j < flights.size(); j++) {
                     if (flights.get(j).getDepTime().compareTo(lowest) < 0) {
