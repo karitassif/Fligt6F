@@ -12,8 +12,10 @@ public class Booking {
 
 
     public Booking(int bookingID, Passenger[] passengers, Flight flight, String comment){
+        for (int i = 0; i < passengers.length; i++){
+            if (passengers[i] == null) throw new IllegalArgumentException("Fokkjú");
+        }
         this.bookingID = bookingID;
-        this.passengers = passengers;
         this.flight = flight;
         this.comment = comment;
     }
