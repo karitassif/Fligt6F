@@ -67,10 +67,12 @@ public class SearchController {
     }
 
     public List<Flight> getFlights() {
+
         return flights;
     }
 
     public List<Flight> getFilteredFlights() {
+
         return filteredFlights;
     }
 }
