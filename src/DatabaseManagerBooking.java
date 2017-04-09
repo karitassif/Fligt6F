@@ -3,9 +3,11 @@
  */
 public class DatabaseManagerBooking {
 
+    /*
     public Booking findBooking(int bookingID){
         return new Booking();
     }
+    */
     public void addBooking(Booking booking){
 
     }

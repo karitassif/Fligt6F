@@ -13,8 +13,10 @@ public class BookingController {
         DBMB.addBooking(booking);
     }
 
+    /*
     public Booking searchBooking(int bookingID){
         DatabaseManagerBooking DBMB = new DatabaseManagerBooking();
         return DBMB.findBooking(bookingID);
     }
+    */
 }

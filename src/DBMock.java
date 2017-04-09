@@ -68,7 +68,6 @@ public class DBMock implements DBManagerInterface {
     }
 
     public void changeAvailableSeats(int flightNumber, int passengerCount){
-
     }
 
 }

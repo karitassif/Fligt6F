@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -9,11 +10,11 @@ public class SearchController {
     DBManagerInterface dbm = new DBMock();
 
     public void searchFlights(String departure, String destination, int maxPrice,
-                              int passengerCount, Calendar depTime) {
+                              int passengerCount, Calendar depTime) throws SQLException {
         flights = dbm.findFlights(departure, destination, maxPrice, passengerCount, depTime);
     }
 
-    public void searchDiscountFlights(int maxPrice){
+    public void searchDiscountFlights(int maxPrice) throws SQLException {
         flights  = dbm.findFlights(maxPrice);
     }
 
