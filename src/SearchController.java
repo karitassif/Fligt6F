@@ -1,7 +1,6 @@
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class SearchController {
 
@@ -75,5 +74,38 @@ public class SearchController {
     public List<Flight> getFilteredFlights() {
 
         return filteredFlights;
+    }
+    public static void main(String[] args) throws SQLException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy. hh:mm");
+        SearchController sc = new SearchController();
+        Calendar cal = new GregorianCalendar(2017,6,24);
+        sc.searchFlights("KEF", "CPH", 50000, 5, cal);
+        for (Flight flight : sc.getFlights()){
+            String flightinfo = "";
+            flightinfo += flight.getFlightNumber() + ": ";
+            flightinfo += "from " + flight.getDeparture().getAirportCity();
+            flightinfo += " to " + flight.getDestination().getAirportCity() + " ";
+            flightinfo += flight.getDepTime().get(Calendar.DAY_OF_MONTH) + ".";
+            flightinfo += flight.getDepTime().get(Calendar.MONTH) + ".";
+            flightinfo += flight.getDepTime().get(Calendar.YEAR) + "  ";
+            flightinfo += flight.getDepTime().get(Calendar.HOUR_OF_DAY) + ":";
+            flightinfo += flight.getDepTime().get(Calendar.MINUTE) + ", ";
+            flightinfo += flight.getArrTime().get(Calendar.HOUR_OF_DAY) + ":";
+            flightinfo += flight.getArrTime().get(Calendar.MINUTE) + ", ";
+            //System.out.println(flightinfo);
+        }
+        sc.searchDiscountFlights(70000, cal);
+        for (Flight flight : sc.getFlights()){
+            String flightinfo = "";
+            flightinfo += flight.getFlightNumber() + ": ";
+            flightinfo += "from " + flight.getDeparture().getAirportCity();
+            flightinfo += " to " + flight.getDestination().getAirportCity() + " ";
+            flightinfo += "Departure " + flight.getFormattedDepTime();
+            flightinfo += " Arrival " + flight.getFormattedArrTime();
+            flightinfo += " Price: " + flight.getPrice();
+
+            System.out.println(flightinfo);
+            //System.out.println(date);
+        }
     }
 }

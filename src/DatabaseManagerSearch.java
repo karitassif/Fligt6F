@@ -54,12 +54,12 @@ public class DatabaseManagerSearch implements DBManagerInterface{
             Airport airport1 = new Airport(depcity, depcountry, depcode);
             Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
             Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
-                    Integer.parseInt(depdatesplit[1]),
+                    Integer.parseInt(depdatesplit[1])-1,
                     Integer.parseInt(depdatesplit[2]),
                     Integer.parseInt(depsplit[0]),
                     Integer.parseInt(depsplit[1]));
             Calendar arr = new GregorianCalendar(Integer.parseInt(arrdatesplit[0]),
-                    Integer.parseInt(arrdatesplit[1]),
+                    Integer.parseInt(arrdatesplit[1])-1,
                     Integer.parseInt(arrdatesplit[2]),
                     Integer.parseInt(arrsplit[0]),
                     Integer.parseInt(arrsplit[1]));

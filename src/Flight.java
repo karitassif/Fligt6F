@@ -1,3 +1,6 @@
+import sun.java2d.pipe.SpanShapeRenderer;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -58,5 +61,17 @@ public class Flight {
     public int getPrice() {
         return price;
     }
+
+    public String getFormattedDepTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        sdf.setCalendar(depTime);
+        return sdf.format(depTime.getTime());
+    }
+    public String getFormattedArrTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        sdf.setCalendar(arrTime);
+        return sdf.format(arrTime.getTime());
+    }
 }
+
 
