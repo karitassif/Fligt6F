@@ -91,10 +91,19 @@ public class DatabaseManagerSearch implements DBManagerInterface{
 
         return makeFlights(rs);
     }
-    public List<Flight> findFlights(int maxPrice) throws SQLException {
+    public List<Flight> findFlights(int maxPrice, Calendar depTime) throws SQLException {
         Connection conn = connect();
         Statement statement = conn.createStatement();
-        String sql = "select * from flights where price <" + maxPrice;
+        Calendar before = (Calendar) depTime.clone();
+        Calendar after = (Calendar) depTime.clone();
+        before.add(Calendar.DAY_OF_YEAR, -3);
+        after.add(Calendar.DAY_OF_YEAR, 3);
+        String beforedate = "'" + before.get(Calendar.YEAR) + "-" + before.get(Calendar.MONTH) + "-" +
+                before.get(Calendar.DAY_OF_MONTH) + "'";
+        String afterdate = "'" + after.get(Calendar.YEAR) + "-" + after.get(Calendar.MONTH) + "-" +
+                after.get(Calendar.DAY_OF_MONTH) + "'";
+        String sql = "select * from flights where price <" + maxPrice + " and depdate between " +
+                      beforedate + " and " + afterdate;
         ResultSet rs =  statement.executeQuery(sql);
 
         return makeFlights(rs);

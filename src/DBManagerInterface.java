@@ -7,7 +7,7 @@ public interface DBManagerInterface {
 
     public List<Flight> findFlights(String departure, String destination, int maxPrice,
                                     int passengerCount, Calendar depTime) throws SQLException;
-    public List<Flight> findFlights(int maxPrice) throws SQLException;
+    public List<Flight> findFlights(int maxPrice, Calendar deptime) throws SQLException;
 
     public void changeAvailableSeats(int flightNumber, int passengerCount) throws SQLException;
 

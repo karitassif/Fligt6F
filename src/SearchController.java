@@ -14,8 +14,8 @@ public class SearchController {
         flights = dbm.findFlights(departure, destination, maxPrice, passengerCount, depTime);
     }
 
-    public void searchDiscountFlights(int maxPrice) throws SQLException {
-        flights  = dbm.findFlights(maxPrice);
+    public void searchDiscountFlights(int maxPrice, Calendar deptime) throws SQLException {
+        flights  = dbm.findFlights(maxPrice, deptime);
     }
 
     public int showPrice(Flight flight, int adultCount, int childCount){

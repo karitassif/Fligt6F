@@ -3,8 +3,9 @@ import java.util.*;
 /**
  * Created by atlim on 29.3.2017.
  */
-public class DBMock implements DBManagerInterface {
+public class DBMock /*implements DBManagerInterface*/ {
 
+    /*
     List<Flight> flights;
 
     public DBMock(){
@@ -68,6 +69,6 @@ public class DBMock implements DBManagerInterface {
     }
 
     public void changeAvailableSeats(int flightNumber, int passengerCount){
-    }
+    }*/
 
 }
