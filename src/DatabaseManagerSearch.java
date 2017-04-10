@@ -128,6 +128,7 @@ public class DatabaseManagerSearch implements DBManagerInterface{
         }
         seats -= passengerCount;
         String update = "update flights set availableseats =" + seats + "where flightnumber = " + flightNumber;
+        statement.execute(update);
     }
 
     public static void main(String[] args) throws SQLException {
@@ -139,7 +140,7 @@ public class DatabaseManagerSearch implements DBManagerInterface{
             System.out.println(flight.getDestination().getAirportCode());
             System.out.println();
         }
-        dbms.changeAvailableSeats(7673,5);
+        dbms.changeAvailableSeats(23005,5);
     }
 
 

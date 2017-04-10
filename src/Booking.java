@@ -1,4 +1,5 @@
 import java.awt.print.Book;
+import java.util.List;
 
 /**
  * Created by atlim on 5.4.2017.
@@ -6,14 +7,14 @@ import java.awt.print.Book;
 public class Booking {
 
     private int bookingID;
-    private Passenger[] passengers;
+    private List<Passenger> passengers;
     private Flight flight;
     private String comment;
 
 
-    public Booking(int bookingID, Passenger[] passengers, Flight flight, String comment){
-        for (int i = 0; i < passengers.length; i++){
-            if (passengers[i] == null) throw new IllegalArgumentException("Fokkjú");
+    public Booking(int bookingID, List<Passenger> passengers, Flight flight, String comment){
+        for (int i = 0; i < passengers.size(); i++){
+            if (passengers.get(i) == null) throw new IllegalArgumentException("Fokkjú");
         }
         this.bookingID = bookingID;
         this.flight = flight;
@@ -24,7 +25,7 @@ public class Booking {
         return bookingID;
     }
 
-    public Passenger[] getPassengers() {
+    public List<Passenger> getPassengers() {
         return passengers;
     }
 
