@@ -63,12 +63,12 @@ public class Flight {
     }
 
     public String getFormattedDepTime(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         sdf.setCalendar(depTime);
         return sdf.format(depTime.getTime());
     }
     public String getFormattedArrTime(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         sdf.setCalendar(arrTime);
         return sdf.format(arrTime.getTime());
     }

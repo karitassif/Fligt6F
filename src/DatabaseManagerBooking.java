@@ -44,12 +44,12 @@ public class DatabaseManagerBooking {
             pass = rs.getString("passengers");
             String[] passengers = pass.split(";");
             for (int i = 0; i < passengers.length; i++){
-                String[] passenger = passengers[i].split(",");
-                Passenger passenger1 = new Passenger(passenger[0], passenger[1]);
-                passengerlist.add(passenger1);
+                String[] passengerinfo = passengers[i].split(",");
+                Passenger passenger = new Passenger(passengerinfo[0], passengerinfo[1]);
+                passengerlist.add(passenger);
             }
         }
-        sql = "select * from flights where fligtnumber =" + flightnumber;
+        sql = "select * from flights where flightnumber =" + flightnumber;
         rs =  statement.executeQuery(sql);
 
         Flight flight;
@@ -71,16 +71,15 @@ public class DatabaseManagerBooking {
             String depdate = rs.getString("depdate");
             String arrdate = rs.getString("arrdate");
 
-
-
             String[] depsplit = dept.split("\\.");
             String[] arrsplit = arrt.split("\\.");
             String[] depdatesplit = depdate.split("-");
             String[] arrdatesplit = arrdate.split("-");
 
-
             Airport airport1 = new Airport(depcity, depcountry, depcode);
             Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
+
+            //month goes from 0 to 11 so we subtract 1 from month
             Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
                     Integer.parseInt(depdatesplit[1])-1,
                     Integer.parseInt(depdatesplit[2]),

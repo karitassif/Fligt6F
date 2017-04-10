@@ -9,12 +9,13 @@ import java.util.List;
  */
 public class BookingController {
 
-    public void bookFlight(Flight flight, List<Passenger> passengers, String comment) throws SQLException {
+    public Booking bookFlight(Flight flight, List<Passenger> passengers, String comment) throws SQLException {
         DatabaseManagerBooking DBMB = new DatabaseManagerBooking();
         DatabaseManagerSearch DBMS = new DatabaseManagerSearch();
         Booking booking = new Booking(passengers, flight, comment);
         DBMS.changeAvailableSeats(flight.getFlightNumber(), passengers.size());
         booking.setBookingID(DBMB.addBooking(booking));
+        return booking;
     }
 
     public Booking searchBooking(int bookingID) throws SQLException {

@@ -27,6 +27,61 @@ public class Insert {
 
 
     public static void main(String[] args) throws SQLException {
+        /*
+
+        Connection conn = connect();
+        Statement statement = conn.createStatement();
+        String sql = "select * from flights where depdate = '31.12.2017'";
+        ResultSet rs = statement.executeQuery(sql);
+
+        Flight flight;
+
+        while (rs.next()) {
+
+            int flightnumber = rs.getInt("flightnumber");
+            String depcode = rs.getString("depcode");
+            String depcity = rs.getString("depcity");
+            String depcountry = rs.getString("depcountry");
+            String arrcode = rs.getString("arrcode");
+            String arrcity = rs.getString("arrcity");
+            String arrcountry = rs.getString("arrcountry");
+            int price = rs.getInt("price");
+            int available = rs.getInt("availableseats");
+            double childdiscount = rs.getDouble("childdiscount");
+            String dept = rs.getString("deptime");
+            String arrt = rs.getString("arrtime");
+            String depdate = rs.getString("depdate");
+            String arrdate = rs.getString("arrdate");
+
+            String[] depsplit = dept.split("\\.");
+            String[] arrsplit = arrt.split("\\.");
+            String[] depdatesplit = depdate.split("-");
+            String[] arrdatesplit = arrdate.split("-");
+
+            System.out.println(depdate);
+
+            Airport airport1 = new Airport(depcity, depcountry, depcode);
+            Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
+
+            //month goes from 0 to 11 so we subtract 1 from month
+            Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
+                    Integer.parseInt(depdatesplit[1]) - 1,
+                    Integer.parseInt(depdatesplit[2]),
+                    Integer.parseInt(depsplit[0]),
+                    Integer.parseInt(depsplit[1]));
+            Calendar arr = new GregorianCalendar(Integer.parseInt(arrdatesplit[0]),
+                    Integer.parseInt(arrdatesplit[1]) - 1,
+                    Integer.parseInt(arrdatesplit[2]),
+                    Integer.parseInt(arrsplit[0]),
+                    Integer.parseInt(arrsplit[1]));
+
+            flight = new Flight(flightnumber, airport1, airport2, price, dep, arr, available, childdiscount);
+            System.out.println(flight.getFormattedDepTime());
+        }
+
+        */
+
+
 
         In in = new In("flugvellir.txt");
         String[] lines = in.readAllLines();
@@ -64,14 +119,15 @@ public class Insert {
         */
 
 
+
         Connection conn = connect();
         Statement statement = conn.createStatement();
         String sql1 = "insert into flights (depcode, depcity, depcountry, arrcode," +
                       "arrcity, arrcountry, price, availableseats, childdiscount, deptime, arrtime, depdate, arrdate)";
         String sql2 = "insert into flights (arrcode, arrcity, arrcountry, depcode," +
                 "depcity, depcountry, price, availableseats, childdiscount, deptime, arrtime, depdate, arrdate)";
-        Days day = new Days(20,5,2017);
-        for (int i = 0; i < 1000; i++){
+        Days day = new Days(10,4,2017);
+        for (int i = 0; i < 730; i++){
             for (int j = 0; j < codes.length; j++){
                 int price1 = (int)(Math.random()*80000) + 15000;
                 int seats1 = (int)(Math.random()*200);
