@@ -25,6 +25,9 @@ public class DatabaseManagerSearch implements DBManagerInterface{
         return connection;
     }
 
+    /* because of duplicate code make private method to create flight list from ResultSet
+
+     */
     private List<Flight> makeFlights(ResultSet rs) throws SQLException {
         List<Flight> flights = new ArrayList<>();
         while (rs.next()) {
@@ -53,6 +56,7 @@ public class DatabaseManagerSearch implements DBManagerInterface{
 
             Airport airport1 = new Airport(depcity, depcountry, depcode);
             Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
+            // Calendar.java starts month with 0 so we subtract 1 from date
             Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
                     Integer.parseInt(depdatesplit[1])-1,
                     Integer.parseInt(depdatesplit[2]),
@@ -78,6 +82,7 @@ public class DatabaseManagerSearch implements DBManagerInterface{
         Statement statement = conn.createStatement();
         Calendar before = (Calendar) depTime.clone();
         Calendar after = (Calendar) depTime.clone();
+        //Search every flight within parameters in one week frame, the middle of the week being search parameter
         before.add(Calendar.DAY_OF_YEAR, -3);
         after.add(Calendar.DAY_OF_YEAR, 3);
         String beforedate = "'" + before.get(Calendar.YEAR) + "-" + (before.get(Calendar.MONTH)+1) + "-" +
@@ -114,12 +119,14 @@ public class DatabaseManagerSearch implements DBManagerInterface{
     public void changeAvailableSeats(int flightNumber, int passengerCount) throws SQLException {
         Connection conn = connect();
         Statement statement = conn.createStatement();
+        //get number of available seats on given flight
         String sql = "select availableseats from flights where flightnumber = " + flightNumber;
         ResultSet rs = statement.executeQuery(sql);
         int seats = 0;
         while (rs.next()) {
             seats = rs.getInt("availableseats");
         }
+        // update available seats in database
         seats -= passengerCount;
         String update = "update flights set availableseats =" + seats + "where flightnumber = " + flightNumber;
         statement.execute(update);

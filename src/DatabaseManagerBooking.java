@@ -14,6 +14,10 @@ public class DatabaseManagerBooking {
     private final String user = "postgres";
     private final String password = "Flight6f";
 
+
+    /* Returns a Connection to database
+
+     */
     private Connection connect(){
         Connection connection = null;
         try{
@@ -27,6 +31,9 @@ public class DatabaseManagerBooking {
     }
 
 
+    /* searches database for booking with given bookingID
+
+     */
     public Booking findBooking(int bookingID) throws SQLException {
         Connection conn = connect();
         Statement statement = conn.createStatement();
@@ -43,12 +50,18 @@ public class DatabaseManagerBooking {
             comment = rs.getString("comment");
             pass = rs.getString("passengers");
             String[] passengers = pass.split(";");
+            /* passengers are formatted with (kennitala1, name1;kennitala2, name2; ...)
+
+              */
             for (int i = 0; i < passengers.length; i++){
                 String[] passengerinfo = passengers[i].split(",");
                 Passenger passenger = new Passenger(passengerinfo[0], passengerinfo[1]);
                 passengerlist.add(passenger);
             }
         }
+        /* searches flight connected with given booking
+
+         */
         sql = "select * from flights where flightnumber =" + flightnumber;
         rs =  statement.executeQuery(sql);
 
@@ -94,6 +107,9 @@ public class DatabaseManagerBooking {
             flight = new Flight(flightnumber, airport1, airport2, price, dep, arr, available, childdiscount);
             return new Booking(id, passengerlist, flight, comment);
         }
+        /*if no such booking return null?
+
+         */
         return null;
 
     }
@@ -111,6 +127,9 @@ public class DatabaseManagerBooking {
         String comment = "'" + booking.getComment() + "'";
         sql += flightnumber + "," + comment + "," + passengers + ")";
         statement.execute(sql);
+        /* returns bookingID from primary key in database
+
+         */
         sql = "select bookingid from bookings where passengers = " + passengers  + "and comment = " + comment;
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()){

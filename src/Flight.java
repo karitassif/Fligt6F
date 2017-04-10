@@ -62,6 +62,9 @@ public class Flight {
         return price;
     }
 
+    /* returns formatted date (DD.MM.YYYY HH:MM)
+
+     */
     public String getFormattedDepTime(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         sdf.setCalendar(depTime);

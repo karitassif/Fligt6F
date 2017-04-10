@@ -8,6 +8,9 @@ public class SearchController {
     private List<Flight> filteredFlights;
     DBManagerInterface dbm = new DatabaseManagerSearch();
 
+    /* updates flight list attribute by calling findFlights method to database
+
+     */
     public void searchFlights(String departure, String destination, int maxPrice,
                               int passengerCount, Calendar depTime) throws SQLException {
         flights = dbm.findFlights(departure, destination, maxPrice, passengerCount, depTime);
@@ -17,10 +20,16 @@ public class SearchController {
         flights  = dbm.findFlights(maxPrice, deptime);
     }
 
+    /* returns total price for given number of adults and children
+
+     */
     public int showPrice(Flight flight, int adultCount, int childCount){
         return (int) (adultCount*flight.getPrice() + 1.0*childCount*flight.getChildDiscount()*flight.getPrice());
     }
 
+    /* updates filtered flights attribute by price
+
+     */
     public void filterFlights(int maxPrice, boolean childDiscount){
         filteredFlights = new ArrayList<Flight>();
         for (Flight flight : flights){
@@ -32,6 +41,9 @@ public class SearchController {
 
     }
 
+    /* sorts flights by price or by date with selection sort
+
+     */
     public void sortFlights(boolean sortByPrice){
         if (sortByPrice) {
             for (int i = 0; i < flights.size(); i++) {
