@@ -12,11 +12,18 @@ public class Booking {
     private String comment;
 
 
-    public Booking(int bookingID, List<Passenger> passengers, Flight flight, String comment){
-        for (int i = 0; i < passengers.size(); i++){
+    public Booking(List<Passenger> passengers, Flight flight, String comment){
+        for (int i = 0; i < passengers.size(); i++) {
             if (passengers.get(i) == null) throw new IllegalArgumentException("Fokkjú");
         }
+        this.flight = flight;
+        this.comment = comment;
+    }
+    public Booking(int bookingID, List<Passenger> passengers, Flight flight, String comment){
         this.bookingID = bookingID;
+        for (int i = 0; i < passengers.size(); i++) {
+            if (passengers.get(i) == null) throw new IllegalArgumentException("Fokkjú");
+        }
         this.flight = flight;
         this.comment = comment;
     }
@@ -35,5 +42,9 @@ public class Booking {
 
     public String getComment() {
         return comment;
+    }
+
+    public void setBookingID(int bookingID) {
+        this.bookingID = bookingID;
     }
 }

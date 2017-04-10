@@ -7,7 +7,7 @@ public class SearchController {
 
     private List<Flight> flights;
     private List<Flight> filteredFlights;
-    DBManagerInterface dbm = new DBMock();
+    DBManagerInterface dbm = new DatabaseManagerSearch();
 
     public void searchFlights(String departure, String destination, int maxPrice,
                               int passengerCount, Calendar depTime) throws SQLException {

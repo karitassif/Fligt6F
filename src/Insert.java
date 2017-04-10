@@ -67,26 +67,29 @@ public class Insert {
         Connection conn = connect();
         Statement statement = conn.createStatement();
         String sql1 = "insert into flights (depcode, depcity, depcountry, arrcode," +
-                      "arrcity, arrcountry, price, availableseats, childdiscount, deptime, arrtime)";
+                      "arrcity, arrcountry, price, availableseats, childdiscount, deptime, arrtime, depdate, arrdate)";
         String sql2 = "insert into flights (arrcode, arrcity, arrcountry, depcode," +
-                "depcity, depcountry, price, availableseats, childdiscount, deptime, arrtime)";
+                "depcity, depcountry, price, availableseats, childdiscount, deptime, arrtime, depdate, arrdate)";
         Days day = new Days(20,5,2017);
-        for (int i = 0; i < 365; i++){
+        for (int i = 0; i < 1000; i++){
             for (int j = 0; j < codes.length; j++){
-                int price1 = (int)(Math.random()*100000);
+                int price1 = (int)(Math.random()*80000) + 15000;
                 int seats1 = (int)(Math.random()*200);
-                int price2 = (int)(Math.random()*100000);
+                int price2 = (int)(Math.random()*800000) + 15000;
                 int seats2 = (int)(Math.random()*200);
-                String depart1 = "'" + day.toString() + "." + dep1[j] + "'";
-                String arriv1 = "'" +  day.toString() + "." + arr1[j] + "'";
-                String depart2 = "'" + day.toString() + "." + dep2[j] + "'";
-                String arriv2 = "'" +  day.toString() + "." + arr2[j] + "'";
+                String deptime1 = "'" + dep1[j] + "'";
+                String arrtime1 = "'" + arr1[j] + "'";
+                String deptime2 = "'" + dep2[j] + "'";
+                String arrtime2 = "'" + arr2[j] + "'";
+                String depdate1 = "'" + day.toString() + "'";
+                String arrdate1 = "'" + day.toString() + "'";
                 String sql3 = "values ('KEF','Keflavik', 'Iceland', " + codes[j] + "," +
                                cities[j] + "," + countries[j] + ", " + price1 + "," + seats1 + "," +
-                                       0.7 + "," + depart1 + "," + arriv1 + ")";
+                                       0.7 + "," + deptime1 + "," + arrtime1 +
+                                       "," + depdate1 + "," + arrdate1 + ")";
                 String sql4 = "values ('KEF','Keflavik', 'Iceland', " + codes[j] + "," +
                         cities[j] + "," + countries[j] + ", " + price2 + "," + seats2 + "," +
-                        0.7 + "," + depart2 + "," + arriv2 + ")";
+                        0.7 + "," + deptime2 + "," + arrtime2 + "," + depdate1 + "," + arrdate1 + ")";
 
                 String query1 = sql1 + sql3;
                 String query2 = sql2 + sql4;

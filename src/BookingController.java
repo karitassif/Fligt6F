@@ -12,9 +12,9 @@ public class BookingController {
     public void bookFlight(Flight flight, List<Passenger> passengers, String comment) throws SQLException {
         DatabaseManagerBooking DBMB = new DatabaseManagerBooking();
         DatabaseManagerSearch DBMS = new DatabaseManagerSearch();
-        Booking booking = new Booking(1, passengers, flight, comment);
+        Booking booking = new Booking(passengers, flight, comment);
         DBMS.changeAvailableSeats(flight.getFlightNumber(), passengers.size());
-        DBMB.addBooking(booking);
+        booking.setBookingID(DBMB.addBooking(booking));
     }
 
     public Booking searchBooking(int bookingID) throws SQLException {

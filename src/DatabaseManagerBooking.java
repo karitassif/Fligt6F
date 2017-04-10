@@ -1,3 +1,4 @@
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,9 +54,9 @@ public class DatabaseManagerBooking {
 
         Flight flight;
 
-        while (rs.next()) {
+        while (rs.next()){
 
-            int flightnumber1 = rs.getInt("flightnumber");
+            flightnumber = rs.getInt("flightnumber");
             String depcode = rs.getString("depcode");
             String depcity = rs.getString("depcity");
             String depcountry = rs.getString("depcountry");
@@ -67,28 +68,37 @@ public class DatabaseManagerBooking {
             double childdiscount = rs.getDouble("childdiscount");
             String dept = rs.getString("deptime");
             String arrt = rs.getString("arrtime");
+            String depdate = rs.getString("depdate");
+            String arrdate = rs.getString("arrdate");
+
 
 
             String[] depsplit = dept.split("\\.");
             String[] arrsplit = arrt.split("\\.");
+            String[] depdatesplit = depdate.split("-");
+            String[] arrdatesplit = arrdate.split("-");
 
 
             Airport airport1 = new Airport(depcity, depcountry, depcode);
             Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
-            Calendar dep = new GregorianCalendar(Integer.parseInt(depsplit[2]), Integer.parseInt(depsplit[1])
-                    , Integer.parseInt(depsplit[0]), Integer.parseInt(depsplit[3])
-                    , Integer.parseInt(depsplit[4]));
-            Calendar arr = new GregorianCalendar(Integer.parseInt(arrsplit[2]), Integer.parseInt(arrsplit[1])
-                    , Integer.parseInt(arrsplit[0]), Integer.parseInt(arrsplit[3])
-                    , Integer.parseInt(arrsplit[4]));
+            Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
+                    Integer.parseInt(depdatesplit[1]),
+                    Integer.parseInt(depdatesplit[2]),
+                    Integer.parseInt(depsplit [0]),
+                    Integer.parseInt(depsplit[1]) );
+            Calendar arr = new GregorianCalendar(Integer.parseInt(arrdatesplit[0]),
+                    Integer.parseInt(arrdatesplit[1]),
+                    Integer.parseInt(arrdatesplit[2]),
+                    Integer.parseInt(arrsplit [0]),
+                    Integer.parseInt(arrsplit[1]) );
 
-            flight = new Flight(flightnumber1, airport1, airport2, price, dep, arr, available, childdiscount);
+            flight = new Flight(flightnumber, airport1, airport2, price, dep, arr, available, childdiscount);
             return new Booking(id, passengerlist, flight, comment);
         }
         return null;
 
     }
-    public void addBooking(Booking booking) throws SQLException {
+    public int addBooking(Booking booking) throws SQLException {
         Connection conn = connect();
         Statement statement = conn.createStatement();
         String sql = "insert into bookings (flightnumber, comment, passengers) values (";
@@ -102,6 +112,12 @@ public class DatabaseManagerBooking {
         String comment = "'" + booking.getComment() + "'";
         sql += flightnumber + "," + comment + "," + passengers + ")";
         statement.execute(sql);
+        sql = "select bookingid from bookings where passengers = " + passengers  + "and comment = " + comment;
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()){
+            return rs.getInt("bookingid");
+        }
+        return -1;
     }
 
     public static void main(String[] args){
