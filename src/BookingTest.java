@@ -32,9 +32,17 @@ public class BookingTest {
         passengers.add(new Passenger("2009952959", "Atli Marcher Palsson"));
         passengers.add(new Passenger("1211963529", "Karlotta Bjorg Hjaltadottir"));
 
-        Booking booking = bc.bookFlight(flights.get(1), passengers,"Blablabla");
+        int bookingid = bc.bookFlight(flights.get(1), passengers,"Blablabla");
+        System.out.println(bookingid);
+        Booking booking  = bc.searchBooking(bookingid);
         System.out.println(booking.getBookingID());
-        bc.searchBooking(booking.getBookingID());
+        System.out.println(booking.getFlight().getFormattedDepTime());
+        System.out.println(booking.getFlight().getFormattedArrTime());
+        System.out.println(booking.getFlight().getDeparture().getAirportCity());
+        System.out.println(booking.getFlight().getDestination().getAirportCity());
+        for (Passenger passenger : booking.getPassengers()){
+            System.out.println(passenger.getKennitala() + " " + passenger.getName());
+        }
 
     }
 }

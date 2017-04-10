@@ -25,6 +25,7 @@ public class Booking {
         for (int i = 0; i < passengers.size(); i++) {
             if (passengers.get(i) == null) throw new IllegalArgumentException("Fokkjú");
         }
+        this.passengers = passengers;
         this.flight = flight;
         this.comment = comment;
     }
