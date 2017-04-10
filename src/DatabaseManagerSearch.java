@@ -80,10 +80,12 @@ public class DatabaseManagerSearch implements DBManagerInterface{
         Calendar after = (Calendar) depTime.clone();
         before.add(Calendar.DAY_OF_YEAR, -3);
         after.add(Calendar.DAY_OF_YEAR, 3);
-        String beforedate = "'" + before.get(Calendar.YEAR) + "-" + before.get(Calendar.MONTH) + "-" +
+        String beforedate = "'" + before.get(Calendar.YEAR) + "-" + (before.get(Calendar.MONTH)+1) + "-" +
                             before.get(Calendar.DAY_OF_MONTH) + "'";
-        String afterdate = "'" + after.get(Calendar.YEAR) + "-" + after.get(Calendar.MONTH) + "-" +
+        String afterdate = "'" + after.get(Calendar.YEAR) + "-" + (after.get(Calendar.MONTH)+1) + "-" +
                            after.get(Calendar.DAY_OF_MONTH) + "'";
+        System.out.println(beforedate);
+        System.out.println(afterdate);
         String sql = "select * from flights where depcode = " + "'" + departure + "'" + "and arrcode ="
                 + "'"  + destination + "'" + "and price <" + maxPrice + " and availableseats >"
                 + passengerCount + " and depdate BETWEEN " + beforedate +  " and " + afterdate;
@@ -98,9 +100,9 @@ public class DatabaseManagerSearch implements DBManagerInterface{
         Calendar after = (Calendar) depTime.clone();
         before.add(Calendar.DAY_OF_YEAR, -3);
         after.add(Calendar.DAY_OF_YEAR, 3);
-        String beforedate = "'" + before.get(Calendar.YEAR) + "-" + before.get(Calendar.MONTH) + "-" +
+        String beforedate = "'" + before.get(Calendar.YEAR) + "-" + (before.get(Calendar.MONTH)+1) + "-" +
                 before.get(Calendar.DAY_OF_MONTH) + "'";
-        String afterdate = "'" + after.get(Calendar.YEAR) + "-" + after.get(Calendar.MONTH) + "-" +
+        String afterdate = "'" + after.get(Calendar.YEAR) + "-" + (after.get(Calendar.MONTH)+1) + "-" +
                 after.get(Calendar.DAY_OF_MONTH) + "'";
         String sql = "select * from flights where price <" + maxPrice + " and depdate between " +
                       beforedate + " and " + afterdate;
