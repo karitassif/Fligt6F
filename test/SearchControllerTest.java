@@ -21,11 +21,11 @@ import static org.junit.Assert.*;
 public class SearchControllerTest {
 
     /*
-    SearchController sc;
+    flight6f.SearchController sc;
 
     @Before
     public void setUp() throws Exception {
-        sc = new SearchController();
+        sc = new flight6f.SearchController();
     }
 
     @After
@@ -36,20 +36,20 @@ public class SearchControllerTest {
     @Test
     public void searchDiscountFlights() throws Exception {
         sc.searchDiscountFlights(12);
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
         assertEquals(4, found.size());
     }
     @Test
     public void searchDiscountFlightsEmptyList() throws Exception {
         sc.searchDiscountFlights(-5);
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
         assertEquals(0, found.size());
     }
 
     @Test
     public void showPrice() throws Exception {
         sc.searchDiscountFlights(10);
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
         assertEquals(26, sc.showPrice(found.get(0), 2, 2));
 
     }
@@ -58,7 +58,7 @@ public class SearchControllerTest {
     public void filterFlightsNoChildDiscount() throws Exception {
         sc.searchDiscountFlights(20);
         sc.filterFlights(20, false);
-        List<Flight> found = sc.getFilteredFlights();
+        List<flight6f.Flight> found = sc.getFilteredFlights();
         assertEquals(1,found.size());
     }
 
@@ -66,7 +66,7 @@ public class SearchControllerTest {
     public void filterFlights() throws Exception {
         sc.searchDiscountFlights(20);
         sc.filterFlights(12, true);
-        List<Flight> found = sc.getFilteredFlights();
+        List<flight6f.Flight> found = sc.getFilteredFlights();
         assertEquals(3,found.size());
     }
 
@@ -74,8 +74,8 @@ public class SearchControllerTest {
     public void sortFlightsByPrice() throws Exception {
         sc.searchDiscountFlights(20);
         sc.sortFlights(true);
-        List<Flight> found = sc.getFlights();
-        for (Flight flight : found){
+        List<flight6f.Flight> found = sc.getFlights();
+        for (flight6f.Flight flight : found){
             System.out.println(flight.getPrice());
         }
         assertEquals(10, found.get(0).getPrice());
@@ -86,8 +86,8 @@ public class SearchControllerTest {
     public void sortFlightsByDate() throws Exception {
         sc.searchDiscountFlights(20);
         sc.sortFlights(false);
-        List<Flight> found = sc.getFlights();
-        for (Flight flight : found){
+        List<flight6f.Flight> found = sc.getFlights();
+        for (flight6f.Flight flight : found){
             System.out.println(flight.getFlightNumber());
         }
         assertEquals(6, found.get(0).getFlightNumber());
@@ -98,8 +98,8 @@ public class SearchControllerTest {
     public void sortFlightsEmptyList() throws Exception {
         sc.searchDiscountFlights(5);
         sc.sortFlights(true);
-        List<Flight> found = sc.getFlights();
-        for (Flight flight : found){
+        List<flight6f.Flight> found = sc.getFlights();
+        for (flight6f.Flight flight : found){
             System.out.println(flight.getPrice());
         }
         assertEquals(0, found.size());
@@ -110,7 +110,7 @@ public class SearchControllerTest {
     public void testSearchFlightsAirportCodeEmpty() throws Exception {
         sc.searchFlights("", "CPH", 20, 2,
                 new GregorianCalendar(2017,5,24));
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
 
         assertEquals(0, found.size());
     }
@@ -119,7 +119,7 @@ public class SearchControllerTest {
     public void testSearchFlightsAirportCode() throws Exception {
         sc.searchFlights("KEF", "CPH", 20, 2,
                 new GregorianCalendar(2017,5,24));
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
 
         assertEquals("KEF", found.get(0).getDeparture().getAirportCode());
         assertEquals("CPH", found.get(0).getDestination().getAirportCode());
@@ -129,14 +129,14 @@ public class SearchControllerTest {
     public void testSearchFlightAvailableSeats() throws Exception {
         sc.searchFlights("KEF", "ARN", 20, 4,
                 new GregorianCalendar(2017,6,24));
-        List<Flight> found = sc.getFlights();
+        List<flight6f.Flight> found = sc.getFlights();
         assertEquals(2, found.size());
     }
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(SearchController.class)
+                .addClass(flight6f.SearchController.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
     */

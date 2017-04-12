@@ -1,3 +1,5 @@
+package flight6f;
+
 /**
  * Created by atlim on 29.3.2017.
  */

@@ -1,3 +1,5 @@
+package flight6f;
+
 import java.sql.*;
 
 /**
@@ -10,7 +12,7 @@ public class Datetest {
     private static Connection connect(){
         String url = "jdbc:postgresql://localhost/FLIGHT6F";
         String user = "postgres";
-        String password = "Flight6f";
+        String password = ".idea/Flight6f";
         Connection connection = null;
         try{
             connection = DriverManager.getConnection(url, user, password);

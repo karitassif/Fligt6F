@@ -1,7 +1,6 @@
-import javax.xml.crypto.Data;
+package flight6f;
+
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -9,7 +8,7 @@ import java.util.List;
  */
 public class BookingController {
 
-    /* inserts flight ínto database returns bookingID or Booking object
+    /* inserts flight ínto database returns bookingID or flight6f.Booking object
 
      */
     public Booking bookFlight(Flight flight, List<Passenger> passengers, String comment) throws SQLException {

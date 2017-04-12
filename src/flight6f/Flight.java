@@ -1,8 +1,7 @@
-import sun.java2d.pipe.SpanShapeRenderer;
+package flight6f;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by atlim on 29.3.2017.

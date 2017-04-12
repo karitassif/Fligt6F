@@ -1,6 +1,7 @@
+package flight6f;
+
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public interface DBManagerInterface {

@@ -1,8 +1,8 @@
+package flight6f;
+
 import edu.princeton.cs.algs4.*;
 
 import java.sql.*;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * Created by atlim on 9.4.2017.
@@ -13,7 +13,7 @@ public class Insert {
     public static Connection connect(){
         String url = "jdbc:postgresql://localhost/FLIGHT6F";
         String user = "postgres";
-        String password = "Flight6f";
+        String password = ".idea/Flight6f";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -34,7 +34,7 @@ public class Insert {
         String sql = "select * from flights where depdate = '31.12.2017'";
         ResultSet rs = statement.executeQuery(sql);
 
-        Flight flight;
+        flight6f.Flight flight;
 
         while (rs.next()) {
 
@@ -60,8 +60,8 @@ public class Insert {
 
             System.out.println(depdate);
 
-            Airport airport1 = new Airport(depcity, depcountry, depcode);
-            Airport airport2 = new Airport(arrcity, arrcountry, arrcode);
+            flight6f.Airport airport1 = new flight6f.Airport(depcity, depcountry, depcode);
+            flight6f.Airport airport2 = new flight6f.Airport(arrcity, arrcountry, arrcode);
 
             //month goes from 0 to 11 so we subtract 1 from month
             Calendar dep = new GregorianCalendar(Integer.parseInt(depdatesplit[0]),
@@ -75,7 +75,7 @@ public class Insert {
                     Integer.parseInt(arrsplit[0]),
                     Integer.parseInt(arrsplit[1]));
 
-            flight = new Flight(flightnumber, airport1, airport2, price, dep, arr, available, childdiscount);
+            flight = new flight6f.Flight(flightnumber, airport1, airport2, price, dep, arr, available, childdiscount);
             System.out.println(flight.getFormattedDepTime());
         }
 
