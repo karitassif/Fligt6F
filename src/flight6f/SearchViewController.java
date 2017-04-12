@@ -6,9 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.fxml.FXMLLoader;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -261,14 +264,26 @@ public class SearchViewController {
     }
 
 
-
-
-
     @FXML
-    private void book(){
+    private void book() throws IOException{
         int a = departview.getSelectionModel().getSelectedIndex();
         int b = returnview.getSelectionModel().getSelectedIndex();
 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("bookingpanel.fxml"));
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load(), 1100, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Flight6F Search Engine");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to create new Window." + e);
+        }
     }
 
 
