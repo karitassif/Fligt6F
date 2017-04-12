@@ -13,7 +13,7 @@ public class Insert {
     public static Connection connect(){
         String url = "jdbc:postgresql://localhost/FLIGHT6F";
         String user = "postgres";
-        String password = ".idea/Flight6f";
+        String password = "Flight6f";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -131,7 +131,7 @@ public class Insert {
             for (int j = 0; j < codes.length; j++){
                 int price1 = (int)(Math.random()*80000) + 15000;
                 int seats1 = (int)(Math.random()*200);
-                int price2 = (int)(Math.random()*800000) + 15000;
+                int price2 = (int)(Math.random()*80000) + 15000;
                 int seats2 = (int)(Math.random()*200);
                 String deptime1 = "'" + dep1[j] + "'";
                 String arrtime1 = "'" + arr1[j] + "'";

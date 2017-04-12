@@ -18,8 +18,8 @@ public class SearchController {
         flights = dbm.findFlights(departure, destination, maxPrice, passengerCount, depTime);
     }
 
-    public void searchDiscountFlights(int maxPrice, Calendar deptime) throws SQLException {
-        flights  = dbm.findFlights(maxPrice, deptime);
+    public void searchDiscountFlights(int maxPrice, Calendar deptime, int passengerCount) throws SQLException {
+        flights  = dbm.findFlights(maxPrice, deptime, passengerCount);
     }
 
     /* returns total price for given number of adults and children
@@ -107,7 +107,7 @@ public class SearchController {
             flightinfo += flight.getArrTime().get(Calendar.MINUTE) + ", ";
             //System.out.println(flightinfo);
         }
-        sc.searchDiscountFlights(70000, cal);
+        sc.searchDiscountFlights(70000, cal, 5);
         for (Flight flight : sc.getFlights()){
             String flightinfo = "";
             flightinfo += flight.getFlightNumber() + ": ";

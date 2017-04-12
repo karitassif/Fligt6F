@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="1000" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flight6f.BookingViewController">
+   <children>
+      <Label layoutX="34.0" layoutY="58.0" text="Name:" />
+      <Label layoutX="34.0" layoutY="96.0" text="Kennitala" />
+      <TextField fx:id="name" layoutX="159.0" layoutY="51.0" />
+      <TextField fx:id="kennitala" layoutX="159.0" layoutY="89.0" />
+      <Button layoutX="255.0" layoutY="156.0" mnemonicParsing="false" onAction="#addPassenger" text="Add Passenger" />
+      <ListView fx:id="passengerlist" layoutX="615.0" layoutY="51.0" prefHeight="317.0" prefWidth="454.0" />
+   </children>
+</AnchorPane>
