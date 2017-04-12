@@ -91,8 +91,8 @@ public class DatabaseManagerSearch implements DBManagerInterface{
                             before.get(Calendar.DAY_OF_MONTH) + "'";
         String afterdate = "'" + after.get(Calendar.YEAR) + "-" + (after.get(Calendar.MONTH)+1) + "-" +
                            after.get(Calendar.DAY_OF_MONTH) + "'";
-        System.out.println(beforedate);
-        System.out.println(afterdate);
+
+
         String sql = "select * from flights where depcode = " + "'" + departure + "'" + "and arrcode ="
                 + "'"  + destination + "'" + "and price <" + maxPrice + " and availableseats >"
                 + passengerCount + " and depdate BETWEEN " + beforedate +  " and " + afterdate;

@@ -90,7 +90,6 @@ public class SearchController {
         return filteredFlights;
     }
     public static void main(String[] args) throws SQLException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy. hh:mm");
         SearchController sc = new SearchController();
         Calendar cal = new GregorianCalendar(2017,11,1);
         sc.searchFlights("KEF", "CPH", 50000, 5, cal);
