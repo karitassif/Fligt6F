@@ -3,8 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="1000" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flight6f.BookingViewController">
    <children>
@@ -14,5 +16,12 @@
       <TextField fx:id="kennitala" layoutX="159.0" layoutY="89.0" />
       <Button layoutX="255.0" layoutY="156.0" mnemonicParsing="false" onAction="#addPassenger" text="Add Passenger" />
       <ListView fx:id="passengerlist" layoutX="615.0" layoutY="51.0" prefHeight="317.0" prefWidth="454.0" />
+      <Label layoutX="120.0" layoutY="269.0" text="Comment" />
+      <Button layoutX="615.0" layoutY="478.0" mnemonicParsing="false" onAction="#bookFlights" text="Book flight" />
+      <TextArea fx:id="comment" layoutX="95.0" layoutY="323.0" prefHeight="86.0" prefWidth="255.0" />
+      <Text fx:id="successful" layoutX="208.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.0" />
+      <Text fx:id="bookingID1" layoutX="193.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="bookingID2" layoutX="311.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="bookingIDs" layoutX="250.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

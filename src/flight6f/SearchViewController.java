@@ -14,8 +14,10 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class SearchViewController {
 
@@ -72,23 +74,21 @@ public class SearchViewController {
     private TextField maxPrice;
 
     @FXML
-    ListView<String> departview;
+    private ListView<String> departview;
     @FXML
-    ListView<String> returnview;
-
-    @FXML
-    ObservableList<String> flightsto = FXCollections.observableArrayList();
-    @FXML
-    ObservableList<String> flightsfrom = FXCollections.observableArrayList();
-
+    private ListView<String> returnview;
 
     @FXML
-    Button sortByPrice;
+    private ObservableList<String> flightsto = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<String> flightsfrom = FXCollections.observableArrayList();
+
 
     @FXML
-    Text totalPrice;
+    private Button sortByPrice;
 
-
+    @FXML
+    private Text totalPrice;
 
     @FXML
     private void initialize() {
@@ -102,7 +102,7 @@ public class SearchViewController {
     }
 
     @FXML
-    private void alertBoxDate(){
+    private void alertBoxDate() {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
@@ -114,7 +114,7 @@ public class SearchViewController {
     }
 
     @FXML
-    private void alertBoxPassengers(){
+    private void alertBoxPassengers() {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
@@ -126,7 +126,7 @@ public class SearchViewController {
     }
 
     @FXML
-    private void alertBoxDestintion(){
+    private void alertBoxDestintion() {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
@@ -136,8 +136,9 @@ public class SearchViewController {
 
         alert.showAndWait();
     }
+
     @FXML
-    private void alertBoxChoose(){
+    private void alertBoxChoose() {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
@@ -148,27 +149,28 @@ public class SearchViewController {
         alert.showAndWait();
     }
 
+
     @FXML
-    private void showPrice(ActionEvent event){
-        if (departview.getSelectionModel().isEmpty() || returnview.getSelectionModel().isEmpty()){
+    private void showPrice(ActionEvent event) {
+        if (departview.getSelectionModel().isEmpty() || returnview.getSelectionModel().isEmpty()) {
             alertBoxChoose();
             return;
-        }
-        else{
-            int price1 = searchControllerTo.getFlights().get(departview.getSelectionModel().getSelectedIndex()).getPrice();
-            int price2 = searchControllerFrom.getFlights().get(returnview.getSelectionModel().getSelectedIndex()).getPrice();
+        } else {
+            Flight flight1 = searchControllerTo.getFlights().get(departview.getSelectionModel().getSelectedIndex());
+            Flight flight2 = searchControllerFrom.getFlights().get(returnview.getSelectionModel().getSelectedIndex());
+            int price1 = searchControllerTo.showPrice(flight1, adults.getValue(), children.getValue());
+            int price2 = searchControllerFrom.showPrice(flight2, adults.getValue(), children.getValue());
             totalPrice.setText(price1 + price2 + " kr.");
         }
 
     }
 
     @FXML
-    private void sort(ActionEvent event){
-        if (event.getSource() == sortByPrice){
+    private void sort(ActionEvent event) {
+        if (event.getSource() == sortByPrice) {
             searchControllerTo.sortFlights(true);
             searchControllerFrom.sortFlights(true);
-        }
-        else{
+        } else {
             searchControllerTo.sortFlights(false);
             searchControllerFrom.sortFlights(false);
         }
@@ -176,15 +178,15 @@ public class SearchViewController {
     }
 
 
-    private String getInfo(Flight flight){
-            String flightinfo = "";
-            flightinfo += flight.getFlightNumber() + ": ";
-            flightinfo += "from " + flight.getDeparture().getAirportCity();
-            flightinfo += " to " + flight.getDestination().getAirportCity();
-            flightinfo += "\nDeparture: " + flight.getFormattedDepTime();
-            flightinfo += "\nArrival: " + flight.getFormattedArrTime();
-            flightinfo += "\nPrice: " + flight.getPrice() + " kr.";
-            return flightinfo;
+    private String getInfo(Flight flight) {
+        String flightinfo = "";
+        flightinfo += flight.getFlightNumber() + ": ";
+        flightinfo += "from " + flight.getDeparture().getAirportCity();
+        flightinfo += " to " + flight.getDestination().getAirportCity();
+        flightinfo += "\nDeparture: " + flight.getFormattedDepTime();
+        flightinfo += "\nArrival: " + flight.getFormattedArrTime();
+        flightinfo += "\nPrice: " + flight.getPrice() + " kr.";
+        return flightinfo;
 
     }
 
@@ -202,19 +204,19 @@ public class SearchViewController {
         }
         int numberOfPassengers = adults.getValue() + children.getValue();
 
-        if (numberOfPassengers < 1){
+        if (numberOfPassengers < 1) {
             alertBoxPassengers();
             return;
         }
 
         Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
-        Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue()-1, date2.getDayOfMonth());
+        Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
         searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
-        searchControllerFrom.searchDiscountFlights(priceMax,cal2, numberOfPassengers);
+        searchControllerFrom.searchDiscountFlights(priceMax, cal2, numberOfPassengers);
         showlists();
     }
 
-    private void showlists(){
+    private void showlists() {
         flightsto.clear();
         flightsfrom.clear();
 
@@ -230,8 +232,8 @@ public class SearchViewController {
     }
 
     @FXML
-    private void search(ActionEvent event) throws SQLException{
-        if (from.getValue() == null || to.getValue() == null){
+    private void search(ActionEvent event) throws SQLException {
+        if (from.getValue() == null || to.getValue() == null) {
             alertBoxDestintion();
             return;
         }
@@ -239,7 +241,7 @@ public class SearchViewController {
         String[] arr = to.getValue().split(",");
         int numberOfPassengers = adults.getValue() + children.getValue();
 
-        if (numberOfPassengers < 1){
+        if (numberOfPassengers < 1) {
             alertBoxPassengers();
             return;
         }
@@ -249,13 +251,13 @@ public class SearchViewController {
         LocalDate date1 = departdate.getValue();
         LocalDate date2 = returndate.getValue();
 
-        if (date1 == null || date2 == null){
+        if (date1 == null || date2 == null) {
             alertBoxDate();
             return;
         }
 
         Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
-        Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue()-1, date2.getDayOfMonth());
+        Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
 
         searchControllerTo.searchFlights(dep[1], arr[1], priceMax, numberOfPassengers, cal1);
         searchControllerFrom.searchFlights(arr[1], dep[1], priceMax, numberOfPassengers, cal2);
@@ -265,10 +267,7 @@ public class SearchViewController {
 
 
     @FXML
-    private void book() throws IOException{
-        int a = departview.getSelectionModel().getSelectedIndex();
-        int b = returnview.getSelectionModel().getSelectedIndex();
-
+    private void book() throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("bookingpanel.fxml"));
@@ -286,12 +285,17 @@ public class SearchViewController {
         }
     }
 
+    public Flight getDepart(){
+        int index = departview.getSelectionModel().getSelectedIndex();
+        return searchControllerFrom.getFlights().get(index);
+    }
 
+    public Flight getReturn(){
+        int index = returnview.getSelectionModel().getSelectedIndex();
+        return searchControllerTo.getFlights().get(index);
+    }
 
-
-
-
-
-
+    public int getNumberOfPassengers(){
+        return adults.getValue() + children.getValue();
+    }
 }
-
