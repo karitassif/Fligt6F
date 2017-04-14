@@ -23,9 +23,6 @@ import java.util.List;
 public class BookingViewController {
 
     @FXML
-    SearchViewController searchViewController = new SearchViewController();
-
-    @FXML
     Alert alert = new Alert(Alert.AlertType.ERROR);
 
     @FXML
@@ -58,7 +55,7 @@ public class BookingViewController {
 
 
     @FXML
-    private void alerBoxTooMany(){
+    private void alertBoxTooMany(){
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
@@ -73,6 +70,12 @@ public class BookingViewController {
     @FXML
     private void addPassenger(ActionEvent event){
 
+        //Breyta 4 í fjölda farþega úr SearchViewController
+        if (passengers.size() >= 4){
+            alertBoxTooMany();
+            return;
+        }
+
 
         String name = this.name.getText();
         String kennitala = this.kennitala.getText();
@@ -83,6 +86,13 @@ public class BookingViewController {
 
     @FXML
     private void bookFlights(ActionEvent event) throws SQLException {
+        //Finna flug úr SearchViewController
+        //Booking booking1 = bc.bookFlight(flight1, passengersForBooking, comment.getText());
+        //Booking booking2 = bc.bookFlight(flight2, passengersForBooking, comment.getText());
+
+        //bookingID1.setText(booking1.getBookingID() + "");
+        //bookingID2.setText(booking2.getBookingID() + "");
+
         successful.setText("Booking Successful");
         bookingIDs.setText("BookingID's");
     }

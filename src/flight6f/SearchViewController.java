@@ -90,6 +90,16 @@ public class SearchViewController {
     @FXML
     private Text totalPrice;
 
+
+    @FXML
+    TextField bookingID;
+    @FXML
+    Button searchBooking;
+    @FXML
+    ListView<String> flightInfo;
+    @FXML
+    ObservableList<String> flightInfoList = FXCollections.observableArrayList();
+
     @FXML
     private void initialize() {
         from.setItems(fromoptn);
@@ -263,6 +273,22 @@ public class SearchViewController {
         searchControllerFrom.searchFlights(arr[1], dep[1], priceMax, numberOfPassengers, cal2);
 
         showlists();
+    }
+
+    @FXML
+    private void searchBooking(ActionEvent event) throws SQLException {
+        BookingController bookingController = new BookingController();
+        int bookingID = Integer.parseInt(this.bookingID.getText());
+        Booking booking = bookingController.searchBooking(bookingID);
+        Flight flight = booking.getFlight();
+        List<Passenger> passengers = booking.getPassengers();
+        String comment = booking.getComment();
+        flightInfoList.add(bookingID + "");
+        flightInfoList.add(getInfo(flight));
+        for (Passenger passenger : passengers){
+            flightInfoList.add(passenger.getName() + "\n" + passenger.getKennitala());
+        }
+        flightInfo.setItems(flightInfoList);
     }
 
 
