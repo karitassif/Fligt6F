@@ -86,9 +86,9 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="155.0" layoutY="65.0" text="BookingID" />
-                        <TextField layoutX="231.0" layoutY="61.0" />
-                        <Button layoutX="394.0" layoutY="61.0" mnemonicParsing="false" text="Search Booking" />
-                        <ListView layoutX="180.0" layoutY="132.0" prefHeight="304.0" prefWidth="307.0" />
+                        <TextField fx:id="bookingID" layoutX="231.0" layoutY="61.0" />
+                        <Button layoutX="394.0" layoutY="61.0" mnemonicParsing="false" onAction="#searchBooking" text="Search Booking" />
+                        <ListView fx:id="flightInfo" layoutX="180.0" layoutY="132.0" prefHeight="304.0" prefWidth="307.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

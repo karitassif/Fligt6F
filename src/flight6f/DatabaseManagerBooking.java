@@ -131,7 +131,8 @@ public class DatabaseManagerBooking {
         /* returns bookingID from primary key in database
 
          */
-        sql = "select bookingid from bookings where passengers = " + passengers  + "and comment = " + comment;
+        sql = "select bookingid from bookings where flightnumber = " + flightnumber +
+                " and passengers = " + passengers  + " and comment = " + comment;
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()){
             return rs.getInt("bookingid");
