@@ -277,6 +277,7 @@ public class SearchViewController {
 
     @FXML
     private void searchBooking(ActionEvent event) throws SQLException {
+        flightInfoList.clear();
         BookingController bookingController = new BookingController();
         int bookingID = Integer.parseInt(this.bookingID.getText());
         Booking booking = bookingController.searchBooking(bookingID);

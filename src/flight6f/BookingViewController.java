@@ -83,13 +83,10 @@ public class BookingViewController {
 
     @FXML
     private void addPassenger(ActionEvent event){
-
-        //Breyta 4 í fjölda farþega úr SearchViewController
         if (passengers.size() >= numberOfPassengers){
             alertBoxTooMany();
             return;
         }
-
 
         String name = this.name.getText();
         String kennitala = this.kennitala.getText();
@@ -106,8 +103,6 @@ public class BookingViewController {
         }
         Booking booking1 = bc.bookFlight(flight1, passengersForBooking, comment.getText());
         Booking booking2 = bc.bookFlight(flight2, passengersForBooking, comment.getText());
-        System.out.println(flight1.getFlightNumber());
-        System.out.println(flight2.getFlightNumber());
 
         bookingID1.setText(booking1.getBookingID() + "");
         bookingID2.setText(booking2.getBookingID() + "");
