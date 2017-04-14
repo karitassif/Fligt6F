@@ -50,8 +50,11 @@ public class BookingViewController {
     Text bookingIDs;
 
 
-    List<Passenger> passengersForBooking = new ArrayList<>();
-    BookingController bc = new BookingController();
+    private List<Passenger> passengersForBooking = new ArrayList<>();
+    private BookingController bc = new BookingController();
+    private Flight flight1;
+    private Flight flight2;
+    private int numberOfPassengers;
 
 
     @FXML
@@ -71,7 +74,7 @@ public class BookingViewController {
     private void addPassenger(ActionEvent event){
 
         //Breyta 4 í fjölda farþega úr SearchViewController
-        if (passengers.size() >= 4){
+        if (passengers.size() >= numberOfPassengers){
             alertBoxTooMany();
             return;
         }
@@ -86,15 +89,24 @@ public class BookingViewController {
 
     @FXML
     private void bookFlights(ActionEvent event) throws SQLException {
-        //Finna flug úr SearchViewController
-        //Booking booking1 = bc.bookFlight(flight1, passengersForBooking, comment.getText());
-        //Booking booking2 = bc.bookFlight(flight2, passengersForBooking, comment.getText());
+        Booking booking1 = bc.bookFlight(flight1, passengersForBooking, comment.getText());
+        Booking booking2 = bc.bookFlight(flight2, passengersForBooking, comment.getText());
 
-        //bookingID1.setText(booking1.getBookingID() + "");
-        //bookingID2.setText(booking2.getBookingID() + "");
+        bookingID1.setText(booking1.getBookingID() + "");
+        bookingID2.setText(booking2.getBookingID() + "");
 
         successful.setText("Booking Successful");
         bookingIDs.setText("BookingID's");
+    }
+
+    public void setNumberOfPassengers(int n){
+        this.numberOfPassengers = n;
+    }
+    public void setFlight1(Flight flight){
+        this.flight1 = flight;
+    }
+    public void setFlight2(Flight flight){
+        this.flight2 = flight;
     }
 
 

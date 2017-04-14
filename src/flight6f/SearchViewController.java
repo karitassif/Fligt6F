@@ -305,7 +305,16 @@ public class SearchViewController {
             Stage stage = new Stage();
             stage.setTitle("Flight6F Search Engine");
             stage.setScene(scene);
+
+            int n = adults.getValue() + children.getValue();
+            Flight flight1 = searchControllerFrom.getFlights().get(departview.getSelectionModel().getSelectedIndex());
+            Flight flight2 = searchControllerFrom.getFlights().get(returnview.getSelectionModel().getSelectedIndex());
+            ((BookingViewController)fxmlLoader.getController()).setNumberOfPassengers(n);
+            ((BookingViewController)fxmlLoader.getController()).setFlight1(flight1);
+            ((BookingViewController)fxmlLoader.getController()).setFlight2(flight2);
+
             stage.show();
+
         } catch (IOException e) {
             System.err.println("Failed to create new Window." + e);
         }
