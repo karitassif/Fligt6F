@@ -68,6 +68,17 @@ public class BookingViewController {
 
         alert.showAndWait();
     }
+    @FXML
+    private void alertBoxTooFew(){
+        Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UTILITY);
+
+        alert.setTitle("oops!");
+        alert.setHeaderText("Too few passengers inserted");
+        alert.setContentText("Please insert more passengers");
+
+        alert.showAndWait();
+    }
 
 
     @FXML
@@ -89,8 +100,14 @@ public class BookingViewController {
 
     @FXML
     private void bookFlights(ActionEvent event) throws SQLException {
+        if (passengers.size() < numberOfPassengers){
+            alertBoxTooFew();
+            return;
+        }
         Booking booking1 = bc.bookFlight(flight1, passengersForBooking, comment.getText());
         Booking booking2 = bc.bookFlight(flight2, passengersForBooking, comment.getText());
+        System.out.println(flight1.getFlightNumber());
+        System.out.println(flight2.getFlightNumber());
 
         bookingID1.setText(booking1.getBookingID() + "");
         bookingID2.setText(booking2.getBookingID() + "");

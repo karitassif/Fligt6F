@@ -308,7 +308,7 @@ public class SearchViewController {
 
             int n = adults.getValue() + children.getValue();
             Flight flight1 = searchControllerFrom.getFlights().get(departview.getSelectionModel().getSelectedIndex());
-            Flight flight2 = searchControllerFrom.getFlights().get(returnview.getSelectionModel().getSelectedIndex());
+            Flight flight2 = searchControllerTo.getFlights().get(returnview.getSelectionModel().getSelectedIndex());
             ((BookingViewController)fxmlLoader.getController()).setNumberOfPassengers(n);
             ((BookingViewController)fxmlLoader.getController()).setFlight1(flight1);
             ((BookingViewController)fxmlLoader.getController()).setFlight2(flight2);

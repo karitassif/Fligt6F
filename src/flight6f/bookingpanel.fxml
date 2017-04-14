@@ -15,10 +15,10 @@
       <TextField fx:id="name" layoutX="159.0" layoutY="51.0" />
       <TextField fx:id="kennitala" layoutX="159.0" layoutY="89.0" />
       <Button layoutX="255.0" layoutY="156.0" mnemonicParsing="false" onAction="#addPassenger" text="Add Passenger" />
-      <ListView fx:id="passengerlist" layoutX="615.0" layoutY="51.0" prefHeight="317.0" prefWidth="454.0" />
-      <Label layoutX="120.0" layoutY="269.0" text="Comment" />
-      <Button layoutX="615.0" layoutY="478.0" mnemonicParsing="false" onAction="#bookFlights" text="Book flight" />
-      <TextArea fx:id="comment" layoutX="95.0" layoutY="323.0" prefHeight="86.0" prefWidth="255.0" />
+      <ListView fx:id="passengerlist" layoutX="615.0" layoutY="51.0" prefHeight="221.0" prefWidth="454.0" />
+      <Label layoutX="32.0" layoutY="219.0" text="Comment" />
+      <Button layoutX="491.0" layoutY="293.0" mnemonicParsing="false" onAction="#bookFlights" text="Book flight" />
+      <TextArea fx:id="comment" layoutX="123.0" layoutY="219.0" prefHeight="86.0" prefWidth="255.0" />
       <Text fx:id="successful" layoutX="208.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.0" />
       <Text fx:id="bookingID1" layoutX="193.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="bookingID2" layoutX="311.0" layoutY="627.0" strokeType="OUTSIDE" strokeWidth="0.0" />
