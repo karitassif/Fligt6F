@@ -20,6 +20,7 @@ public class BookingController {
         return booking;
     }
 
+    //bla
     /* searches database for booking with given bookingID
 
      */
