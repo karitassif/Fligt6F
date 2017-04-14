@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class DatabaseManagerSearch implements DBManagerInterface{
 
-    private final String url = "jdbc:postgresql://localhost/FLIGHT6F";
+    private final String url = "jdbc:postgresql://127.0.0.1:5432/FLIGHT6F";
     private final String user = "postgres";
     private final String password = "Flight6f";
 
