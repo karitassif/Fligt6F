@@ -1,6 +1,5 @@
 package flight6f;
 
-import edu.princeton.cs.algs4.PatriciaSET;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
