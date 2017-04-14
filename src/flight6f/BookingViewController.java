@@ -73,10 +73,7 @@ public class BookingViewController {
 
     @FXML
     private void addPassenger(ActionEvent event){
-        if (passengersForBooking.size() > searchViewController.getNumberOfPassengers()) {
-            alerBoxTooMany();
-            return;
-        }
+
 
         String name = this.name.getText();
         String kennitala = this.kennitala.getText();
@@ -87,12 +84,8 @@ public class BookingViewController {
 
     @FXML
     private void bookFlights(ActionEvent event) throws SQLException {
-        Booking booking1 = bc.bookFlight(searchViewController.getDepart(), passengersForBooking, comment.getText());
-        Booking booking2 = bc.bookFlight(searchViewController.getReturn(), passengersForBooking, comment.getText());
         successful.setText("Booking Successful");
         bookingIDs.setText("BookingID's");
-        bookingID1.setText(booking1.getBookingID() + "");
-        bookingID2.setText(booking2.getBookingID() + "");
     }
 
 

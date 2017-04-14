@@ -284,18 +284,4 @@ public class SearchViewController {
             System.err.println("Failed to create new Window." + e);
         }
     }
-
-    public Flight getDepart(){
-        int index = departview.getSelectionModel().getSelectedIndex();
-        return searchControllerFrom.getFlights().get(index);
-    }
-
-    public Flight getReturn(){
-        int index = returnview.getSelectionModel().getSelectedIndex();
-        return searchControllerTo.getFlights().get(index);
-    }
-
-    public int getNumberOfPassengers(){
-        return adults.getValue() + children.getValue();
-    }
 }
