@@ -233,6 +233,9 @@ public class SearchViewController {
         Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
         searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
         searchControllerFrom.searchDiscountFlights(priceMax, cal2, numberOfPassengers);
+
+        sort(event);
+
         showlists();
     }
 
@@ -286,6 +289,8 @@ public class SearchViewController {
         searchControllerTo.searchFlights(dep[1], arr[1], priceMax, numberOfPassengers, cal1);
         searchControllerFrom.searchFlights(arr[1], dep[1], priceMax, numberOfPassengers, cal2);
 
+        sort(event);
+
         showlists();
     }
 
@@ -303,6 +308,7 @@ public class SearchViewController {
         for (Passenger passenger : passengers){
             flightInfoList.add(passenger.getName() + "\n" + passenger.getKennitala());
         }
+        flightInfoList.add(comment);
         flightInfo.setItems(flightInfoList);
     }
 
