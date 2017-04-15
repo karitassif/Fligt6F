@@ -79,12 +79,25 @@ public class BookingViewController {
 
         alert.showAndWait();
     }
+    @FXML
+    private void alertBoxInvalidKennitala(){
+        Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UTILITY);
+
+        alert.setTitle("oops!");
+        alert.setHeaderText("Invalid Kennitala");
+        alert.setContentText("Please input a valid kennitala");
+
+        alert.showAndWait();
+    }
+
+    private boolean validateKennitala(String kt){
+        return kt.matches("\\d*") && kt.length() == 10;
+    }
 
 
     @FXML
     private void addPassenger(ActionEvent event){
-
-        //Breyta 4 í fjölda farþega úr SearchViewController
         if (passengers.size() >= numberOfPassengers){
             alertBoxTooMany();
             return;
@@ -93,9 +106,17 @@ public class BookingViewController {
 
         String name = this.name.getText();
         String kennitala = this.kennitala.getText();
+        if (!validateKennitala(kennitala)){
+            alertBoxInvalidKennitala();
+            return;
+        }
+
+
         passengers.add(name + "\n" + kennitala);
         passengerlist.setItems(passengers);
         passengersForBooking.add(new Passenger(kennitala, name));
+        this.name.clear();
+        this.kennitala.clear();
     }
 
     @FXML
@@ -112,7 +133,7 @@ public class BookingViewController {
         bookingID1.setText(booking1.getBookingID() + "");
         bookingID2.setText(booking2.getBookingID() + "");
 
-        successful.setText("Booking Successful");
+        successful.setText("Booking Successful!");
         bookingIDs.setText("BookingID's");
     }
 

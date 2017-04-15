@@ -14,7 +14,7 @@ public class MainSearch extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("searchpanel.fxml"));
         primaryStage.setTitle("Flight6F Search Engine");
 
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
     }
 

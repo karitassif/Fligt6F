@@ -90,6 +90,9 @@ public class SearchViewController {
     @FXML
     private Text totalPrice;
 
+    @FXML
+    private CheckBox discount;
+
 
     @FXML
     TextField bookingID;
@@ -243,6 +246,10 @@ public class SearchViewController {
 
     @FXML
     private void search(ActionEvent event) throws SQLException {
+        if (discount.isSelected()){
+            searchDiscountFlights(event);
+            return;
+        }
         if (from.getValue() == null || to.getValue() == null) {
             alertBoxDestintion();
             return;
@@ -301,7 +308,7 @@ public class SearchViewController {
              * if "fx:controller" is not set in fxml
              * fxmlLoader.setController(NewWindowController);
              */
-            Scene scene = new Scene(fxmlLoader.load(), 1100, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
             Stage stage = new Stage();
             stage.setTitle("Flight6F Search Engine");
             stage.setScene(scene);
