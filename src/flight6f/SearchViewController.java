@@ -88,6 +88,12 @@ public class SearchViewController {
     private Button sortByPrice;
 
     @FXML
+    private RadioButton byPrice;
+    @FXML
+    private RadioButton byDate;
+
+
+    @FXML
     private Text totalPrice;
 
     @FXML
@@ -180,7 +186,8 @@ public class SearchViewController {
 
     @FXML
     private void sort(ActionEvent event) {
-        if (event.getSource() == sortByPrice) {
+        if (flightsto.size() < 1 || flightsfrom.size() < 1) return;
+        if (byPrice.isSelected()) {
             searchControllerTo.sortFlights(true);
             searchControllerFrom.sortFlights(true);
         } else {

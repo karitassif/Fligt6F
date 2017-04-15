@@ -6,10 +6,12 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
@@ -68,10 +70,14 @@
                                        <children>
                                           <Button layoutX="461.0" layoutY="10.0" mnemonicParsing="false" onAction="#book" prefHeight="33.0" prefWidth="76.0" text="Book Flight" />
                                           <Label layoutX="48.0" layoutY="21.0" text="Sort by:" />
-                                          <Button fx:id="sortByPrice" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#sort" text="Price" />
-                                          <Button layoutX="180.0" layoutY="14.0" mnemonicParsing="false" onAction="#sort" text="Date" />
                                           <Text fx:id="totalPrice" layoutX="732.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.7392578125" />
                                           <Button layoutX="651.0" layoutY="14.0" mnemonicParsing="false" onAction="#showPrice" text="TotalPrice" />
+                                          <RadioButton fx:id="byDate" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#sort" selected="true" text="By Date">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="which" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="byPrice" layoutX="119.0" layoutY="31.0" mnemonicParsing="false" onAction="#sort" text="By Price" toggleGroup="$which" />
                                        </children>
                                     </AnchorPane>
                                  </items>
