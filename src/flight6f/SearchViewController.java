@@ -298,7 +298,7 @@ public class SearchViewController {
         Flight flight = booking.getFlight();
         List<Passenger> passengers = booking.getPassengers();
         String comment = booking.getComment();
-        flightInfoList.add(bookingID + "");
+        flightInfoList.add("Booking ID: " + bookingID);
         flightInfoList.add(getInfo(flight));
         for (Passenger passenger : passengers){
             flightInfoList.add(passenger.getName() + "\n" + passenger.getKennitala());
