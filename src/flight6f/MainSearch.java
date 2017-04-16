@@ -16,6 +16,7 @@ public class MainSearch extends Application {
 
         primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
+
     }
 
 

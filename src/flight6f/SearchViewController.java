@@ -318,14 +318,16 @@ public class SearchViewController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("bookingpanel.fxml"));
+
             /*
              * if "fx:controller" is not set in fxml
              * fxmlLoader.setController(NewWindowController);
              */
-            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             Stage stage = new Stage();
             stage.setTitle("Flight6F Search Engine");
             stage.setScene(scene);
+
 
             int n = adults.getValue() + children.getValue();
             Flight flight1 = searchControllerFrom.getFlights().get(departview.getSelectionModel().getSelectedIndex());
@@ -335,6 +337,7 @@ public class SearchViewController {
             ((BookingViewController)fxmlLoader.getController()).setFlight2(flight2);
 
             stage.show();
+            //stage.close(); lokar booking en ekki search
 
         } catch (IOException e) {
             System.err.println("Failed to create new Window." + e);

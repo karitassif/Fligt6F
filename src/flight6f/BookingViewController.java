@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Created by atlim on 12.4.2017.
  */
@@ -98,6 +97,8 @@ public class BookingViewController {
 
     @FXML
     private void addPassenger(ActionEvent event){
+
+
         if (passengers.size() >= numberOfPassengers){
             alertBoxTooMany();
             return;
@@ -105,17 +106,20 @@ public class BookingViewController {
 
         String name = this.name.getText();
         String kennitala = this.kennitala.getText();
+        int b;
+        b = passengers.size()+1;
+
         if (!validateKennitala(kennitala)){
             alertBoxInvalidKennitala();
             return;
         }
 
+            passengers.add("Passenger " + b + ":" + "\n" + name + "\n" + kennitala);
+            passengerlist.setItems(passengers);
+            passengersForBooking.add(new Passenger(kennitala, name));
+            this.name.clear();
+            this.kennitala.clear();
 
-        passengers.add(name + "\n" + kennitala);
-        passengerlist.setItems(passengers);
-        passengersForBooking.add(new Passenger(kennitala, name));
-        this.name.clear();
-        this.kennitala.clear();
     }
 
     @FXML

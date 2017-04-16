@@ -3,40 +3,62 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flight6f.BookingViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flight6f.BookingViewController">
    <children>
-      <Label layoutX="41.0" layoutY="50.0" text="Name:" />
-      <Label layoutX="41.0" layoutY="96.0" text="Kennitala:" />
-      <TextField fx:id="name" layoutX="168.0" layoutY="46.0" />
-      <TextField fx:id="kennitala" layoutX="168.0" layoutY="92.0" />
-      <Button layoutX="222.0" layoutY="137.0" mnemonicParsing="false" onAction="#addPassenger" text="Add Passenger" />
-      <ListView fx:id="passengerlist" layoutX="461.0" layoutY="39.0" prefHeight="236.0" prefWidth="278.0" />
-      <Label layoutX="32.0" layoutY="188.0" text="Comment" />
-      <Button layoutX="370.0" layoutY="290.0" mnemonicParsing="false" onAction="#bookFlights" prefHeight="42.0" prefWidth="107.0" text="Book flight" />
-      <TextArea fx:id="comment" layoutX="168.0" layoutY="188.0" prefHeight="86.0" prefWidth="255.0" />
-      <Text fx:id="successful" layoutX="207.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="433.0000250339508">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <Text fx:id="bookingIDs" layoutX="333.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="180.9999988079071">
-         <font>
-            <Font size="20.0" />
-         </font></Text>
-      <Text fx:id="bookingID1" layoutX="334.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="72.0">
-         <font>
-            <Font size="20.0" />
-         </font></Text>
-      <Text fx:id="bookingID2" layoutX="451.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="52.99999713897705">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
+      <SplitPane dividerPositions="0.65" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="144.0" layoutY="93.0" text="Name:" />
+                  <Label layoutX="144.0" layoutY="137.0" text="Kennitala:" />
+                  <TextField fx:id="name" layoutX="228.0" layoutY="89.0" />
+                  <TextField fx:id="kennitala" layoutX="228.0" layoutY="133.0" />
+                  <Button layoutX="282.0" layoutY="174.0" mnemonicParsing="false" onAction="#addPassenger" text="Add Passenger" />
+                  <ListView fx:id="passengerlist" layoutX="567.0" layoutY="85.0" prefHeight="225.0" prefWidth="265.0" />
+                  <Label layoutX="144.0" layoutY="223.0" text="Comment:" />
+                  <Button layoutX="725.0" layoutY="330.0" mnemonicParsing="false" onAction="#bookFlights" prefHeight="42.0" prefWidth="107.0" text="Book flight" />
+                  <TextArea fx:id="comment" layoutX="228.0" layoutY="223.0" prefHeight="86.0" prefWidth="255.0" />
+                  <Label layoutX="567.0" layoutY="52.0" text="Passenger List: ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="142.0" layoutY="52.0" text=" Book - Fill in details">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text fx:id="successful" layoutX="255.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="433.0000250339508">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="bookingIDs" layoutX="381.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="180.9999988079071">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="bookingID1" layoutX="382.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="72.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="bookingID2" layoutX="499.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="52.99999713897705">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
