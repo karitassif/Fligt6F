@@ -214,6 +214,9 @@ public class SearchViewController {
     @FXML
     private void searchDiscountFlights(ActionEvent event) throws SQLException {
 
+        to.setValue("");
+        from.setValue("");
+
         int priceMax = Integer.parseInt(maxPrice.getText());
 
         LocalDate date1 = departdate.getValue();
