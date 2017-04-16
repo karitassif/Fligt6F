@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -12,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +141,39 @@ public class BookingViewController {
         successful.setText("Booking Successful!");
         bookingIDs.setText("BookingID's");
     }
+
+
+
+    @FXML
+    private void searchWindow(ActionEvent event) throws IOException{
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("searchpanel.fxml"));
+
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Flight6F Search Engine");
+            stage.setScene(scene);
+
+            Node source = (Node) event.getSource();
+            Stage searchStage = (Stage) source.getScene().getWindow();
+            searchStage.close();
+
+            stage.show();
+        }
+        catch (IOException e) {
+            System.err.println("Failed to create new Window." + e);
+        }
+    }
+
+
+
+
+
 
     public void setNumberOfPassengers(int n){
         this.numberOfPassengers = n;

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.scene.Scene;
@@ -256,6 +257,7 @@ public class SearchViewController {
 
     @FXML
     private void search(ActionEvent event) throws SQLException {
+        if (maxPrice.getText().equals("")) maxPrice.setText("200000");
         if (discount.isSelected()){
             searchDiscountFlights(event);
             return;
@@ -314,7 +316,7 @@ public class SearchViewController {
 
 
     @FXML
-    private void book() throws IOException {
+    private void book(ActionEvent event) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("bookingpanel.fxml"));
@@ -336,8 +338,12 @@ public class SearchViewController {
             ((BookingViewController)fxmlLoader.getController()).setFlight1(flight1);
             ((BookingViewController)fxmlLoader.getController()).setFlight2(flight2);
 
+            Node source = (Node) event.getSource();
+            Stage searchStage = (Stage) source.getScene().getWindow();
+            searchStage.close();
+
             stage.show();
-            //stage.close(); lokar booking en ekki search
+
 
         } catch (IOException e) {
             System.err.println("Failed to create new Window." + e);
