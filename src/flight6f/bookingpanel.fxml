@@ -47,12 +47,12 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="bookingID1" layoutX="382.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="72.0">
+                  <Text fx:id="bookingID1" layoutX="382.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="72.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="bookingID2" layoutX="499.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="52.99999713897705">
+                  <Text fx:id="bookingID2" layoutX="499.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="72.0">
                      <font>
                         <Font size="20.0" />
                      </font>
