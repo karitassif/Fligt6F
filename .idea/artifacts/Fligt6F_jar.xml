@@ -29,6 +29,7 @@
       <element id="extracted-dir" path="$USER_HOME$/algs4/algs4.jar" path-in-jar="/" />
       <element id="file-copy" path="$USER_HOME$/algs4/algs4.jar" />
       <element id="file-copy" path="$USER_HOME$/Desktop/postgresql-42.0.0.jar" />
+      <element id="library" level="project" name="Arquillian JUnit:Release" />
     </root>
   </artifact>
 </component>
