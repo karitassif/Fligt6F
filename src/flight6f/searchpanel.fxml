@@ -50,7 +50,7 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font></Label>
-                              <Label layoutX="831.0" layoutY="143.0" text="Returning Flights: ">
+                              <Label layoutX="830.0" layoutY="143.0" text="Returning Flights: ">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Label>
