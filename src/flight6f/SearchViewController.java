@@ -100,6 +100,9 @@ public class SearchViewController {
     @FXML
     private CheckBox discount;
 
+    @FXML
+    private RadioButton oneWay;
+
 
     @FXML
     TextField bookingID;
@@ -233,6 +236,19 @@ public class SearchViewController {
             return;
         }
 
+        if (oneWay.isSelected()){
+
+            Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
+
+            searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
+
+            sort(event);
+
+            showlists();
+
+            return;
+        }
+
         Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
         Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
         searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
@@ -285,6 +301,19 @@ public class SearchViewController {
 
         if (date1 == null || date2 == null) {
             alertBoxDate();
+            return;
+        }
+
+        if (oneWay.isSelected()){
+
+            Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
+
+            searchControllerTo.searchFlights(dep[1], arr[1], priceMax, numberOfPassengers, cal1);
+
+            sort(event);
+
+            showlists();
+
             return;
         }
 
@@ -341,6 +370,7 @@ public class SearchViewController {
             ((BookingViewController)fxmlLoader.getController()).setFlight1(flight1);
             ((BookingViewController)fxmlLoader.getController()).setFlight2(flight2);
 
+            //close search window
             Node source = (Node) event.getSource();
             Stage searchStage = (Stage) source.getScene().getWindow();
             searchStage.close();
