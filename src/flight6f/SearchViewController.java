@@ -23,12 +23,16 @@ import java.util.List;
 public class SearchViewController {
 
 
+
     private SearchController searchControllerTo = new SearchController();
     private SearchController searchControllerFrom = new SearchController();
 
+    //Generic alert box, used for various scenarios
     @FXML
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
+
+    //Departure and destination drop menus
     @FXML
     private ComboBox<String> from;
     @FXML
@@ -58,6 +62,8 @@ public class SearchViewController {
             "Toronto,YYZ"
     );
 
+
+    //Number of passengers
     @FXML
     private ComboBox<Integer> adults;
     @FXML
@@ -79,14 +85,12 @@ public class SearchViewController {
     @FXML
     private ListView<String> returnview;
 
+
+    //List of flights to be displayed on screen
     @FXML
     private ObservableList<String> flightsto = FXCollections.observableArrayList();
     @FXML
     private ObservableList<String> flightsfrom = FXCollections.observableArrayList();
-
-
-    @FXML
-    private Button sortByPrice;
 
     @FXML
     private RadioButton byPrice;
@@ -100,18 +104,17 @@ public class SearchViewController {
     @FXML
     private CheckBox discount;
 
+    //All for searching a booking in the booking tab
     @FXML
-    private RadioButton oneWay;
+    private TextField bookingID;
+    @FXML
+    private Button searchBooking;
+    @FXML
+    private ListView<String> flightInfo;
+    @FXML
+    private ObservableList<String> flightInfoList = FXCollections.observableArrayList();
 
 
-    @FXML
-    TextField bookingID;
-    @FXML
-    Button searchBooking;
-    @FXML
-    ListView<String> flightInfo;
-    @FXML
-    ObservableList<String> flightInfoList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -124,6 +127,7 @@ public class SearchViewController {
         from.getSelectionModel().selectFirst();
     }
 
+    //Various alertbox formats
     @FXML
     private void alertBoxDate() {
         Stage dialog = new Stage();
@@ -173,6 +177,7 @@ public class SearchViewController {
     }
 
 
+    //Shows price by using show price method from SearchController.java
     @FXML
     private void showPrice(ActionEvent event) {
         if (departview.getSelectionModel().isEmpty() || returnview.getSelectionModel().isEmpty()) {
@@ -188,6 +193,7 @@ public class SearchViewController {
 
     }
 
+    //Sorts flights with sort method in SearchController.java
     @FXML
     private void sort(ActionEvent event) {
         if (flightsto.size() < 1 || flightsfrom.size() < 1) return;
@@ -202,6 +208,7 @@ public class SearchViewController {
     }
 
 
+    //Generic method to convert all important data from flights into String
     private String getInfo(Flight flight) {
         String flightinfo = "";
         flightinfo += flight.getFlightNumber() + ": ";
@@ -236,19 +243,6 @@ public class SearchViewController {
             return;
         }
 
-        if (oneWay.isSelected()){
-
-            Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
-
-            searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
-
-            sort(event);
-
-            showlists();
-
-            return;
-        }
-
         Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
         Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
         searchControllerTo.searchDiscountFlights(priceMax, cal1, numberOfPassengers);
@@ -259,6 +253,7 @@ public class SearchViewController {
         showlists();
     }
 
+    //Displays flights in listview on screen
     private void showlists() {
         flightsto.clear();
         flightsfrom.clear();
@@ -304,19 +299,6 @@ public class SearchViewController {
             return;
         }
 
-        if (oneWay.isSelected()){
-
-            Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
-
-            searchControllerTo.searchFlights(dep[1], arr[1], priceMax, numberOfPassengers, cal1);
-
-            sort(event);
-
-            showlists();
-
-            return;
-        }
-
         Calendar cal1 = new GregorianCalendar(date1.getYear(), date1.getMonthValue() - 1, date1.getDayOfMonth());
         Calendar cal2 = new GregorianCalendar(date2.getYear(), date2.getMonthValue() - 1, date2.getDayOfMonth());
 
@@ -347,6 +329,7 @@ public class SearchViewController {
     }
 
 
+    //Opens new Booking window and closes search window
     @FXML
     private void book(ActionEvent event) throws IOException {
         try {

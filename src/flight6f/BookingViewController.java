@@ -94,11 +94,14 @@ public class BookingViewController {
         alert.showAndWait();
     }
 
+    //Checks to see if kennitala is numerical and is of lenght 10
     private boolean validateKennitala(String kt){
         return kt.matches("\\d*") && kt.length() == 10;
     }
 
 
+
+    //Adds passengers to java.awt.List
     @FXML
     private void addPassenger(ActionEvent event){
 
@@ -126,6 +129,7 @@ public class BookingViewController {
 
     }
 
+    //Books flights and stores in database available for searching
     @FXML
     private void bookFlights(ActionEvent event) throws SQLException {
         if (passengers.size() < numberOfPassengers){
@@ -144,6 +148,7 @@ public class BookingViewController {
 
 
 
+    //If user wants to search a new flight, booking window closes and search window opens
     @FXML
     private void searchWindow(ActionEvent event) throws IOException{
         try {
