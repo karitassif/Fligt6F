@@ -13,7 +13,7 @@ public class DatabaseManagerSearch implements DBManagerInterface{
 
     private final String url = "jdbc:postgresql://127.0.0.1:5432/FLIGHT6F";
     private final String user = "postgres";
-    private final String password = "Flight6f";
+    private final String password = "karitas123";
 
     private Connection connect(){
         Connection connection = null;
